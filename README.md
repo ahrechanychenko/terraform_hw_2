@@ -1,8 +1,9 @@
 # Terraform HW 2
-As usual - create your own TF repo
+As usual - create your own TF repo.
+
 In this HW you need to implement Terraform module, that should deploy GCE instance and several related resources.
 
-In addition to that, you need to call that module in root TF module, and pass some outputs, like subnet self link from 
+In addition to that you need to call that module in root TF module, and pass some outputs, like subnet self link, from 
 VPC module to your GCE instance module
 
 GCE instance module should create next resources 

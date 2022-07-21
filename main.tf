@@ -1,29 +1,28 @@
-module "google_vpc" {
-  source     = "./modules/google_network"
-  project_id = var.project
-  vpc_name = var.vpc_name
-  auto_mode  = false
-  subnet_name = var.subnet_name
-  region = var.region
-  cidr = var.cidr
+module "vpc" {
+  source          = "./modules/google_network"
+  project         = var.project
+  region          = var.region
+  vpc_name        = var.vpc_name
+  subnet_name     = var.subnet_name
+  cidr            = var.cidr
+  auto_mode       = false
 }
 
-resource "google_compute_instance" "default" {
-  name         = var.instance_name
-  machine_type = var.instance_type
-  zone =      var.zone
-
-  boot_disk {
-    initialize_params {
-      image = var.instance_image
-    }
-  }
-  network_interface {
-    network = var.vpc_name
-    subnetwork = module.google_vpc.subnet_self_link
-  }
-
-  metadata_startup_script = "echo hi > /test.txt"
+module "gce_instance" {
+  source         = "./modules/gci"
+  vpc_name       = var.vpc_name
+  key            = var.key
+  instance_type  = var.instance_type
+  instance_name  = var.instance_name
+  disk_name      = var.disk_name
+  disk_type      = var.disk_type
+  disk_size      = var.disk_size
+  project        = var.project
+  zone           = var.zone
+  region         = var.region
+  subnet_name    = module.vpc.subnet_self_link
+  cidr           = var.cidr
+  instance_image = var.instance_image
 
 }
 

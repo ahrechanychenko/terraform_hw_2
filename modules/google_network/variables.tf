@@ -1,10 +1,9 @@
-variable "project_id" {
+variable "project" {
   type = string
-}
+  }
 
 variable "vpc_name" {
-  default = "my-vpc"
-  type = string
+    type = string
 }
 
 variable "auto_mode" {
@@ -13,7 +12,7 @@ variable "auto_mode" {
 
 variable "subnet_name" {
   type = string
-}
+  }
 
 variable "cidr" {
   type = string
@@ -21,19 +20,10 @@ variable "cidr" {
 
 variable "region" {
   type  = string
-}
+ }
 
-variable "router_name" {
-  type = string
-  default = "test-router"
-}
 
-variable "router_nat_name" {
-  type = string
-  default = "test-router-nat"
-}
 
-variable "firewall_name" {
-  type = string
-  default = "test-firewall"
-}
+
+
+

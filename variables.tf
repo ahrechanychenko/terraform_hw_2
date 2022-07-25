@@ -79,6 +79,16 @@ variable "disk_size" {
   default     = "1"
 }
 
+variable "ip-addr" {
+  type = string
+  description = "GCE ip address"
+  default = "192.168.0.3"
+  }
 
+variable "google-compute-address-name" {
+  type = string
+  description = "google compute address name"
+  default = "tf-hw2-internal-address"
+}
 
 

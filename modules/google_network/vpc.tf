@@ -14,10 +14,10 @@ resource "google_compute_subnetwork" "tf-hw2-subnet" {
   project       = var.project
 }
 resource "google_compute_address" "tf-hw2-internal-address" {
-  name         = "my-internal-address"
+  name         = var.google-compute-address-name
   subnetwork   = google_compute_subnetwork.tf-hw2-subnet.id
   address_type = "INTERNAL"
-  address      = "192.168.0.3"
+  address      = var.ip-addr
   region       = var.region
 
 }

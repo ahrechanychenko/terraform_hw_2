@@ -1,0 +1,192 @@
+terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.gce_instance.google_compute_attached_disk.tf-hw2-attached-disk will be created
+  + resource "google_compute_attached_disk" "tf-hw2-attached-disk" {
+      + device_name = (known after apply)
+      + disk        = (known after apply)
+      + id          = (known after apply)
+      + instance    = (known after apply)
+      + mode        = "READ_WRITE"
+      + project     = (known after apply)
+      + zone        = (known after apply)
+    }
+
+  # module.gce_instance.google_compute_disk.tf-hw2-disk will be created
+  + resource "google_compute_disk" "tf-hw2-disk" {
+      + creation_timestamp        = (known after apply)
+      + id                        = (known after apply)
+      + label_fingerprint         = (known after apply)
+      + last_attach_timestamp     = (known after apply)
+      + last_detach_timestamp     = (known after apply)
+      + name                      = "tf-hw2-disk"
+      + physical_block_size_bytes = (known after apply)
+      + project                   = (known after apply)
+      + self_link                 = (known after apply)
+      + size                      = 1
+      + source_image_id           = (known after apply)
+      + source_snapshot_id        = (known after apply)
+      + type                      = "pd-balanced"
+      + users                     = (known after apply)
+      + zone                      = "europe-central2-a"
+    }
+
+  # module.gce_instance.google_compute_instance.tf-hw2-gci will be created
+  + resource "google_compute_instance" "tf-hw2-gci" {
+      + can_ip_forward          = false
+      + cpu_platform            = (known after apply)
+      + current_status          = (known after apply)
+      + deletion_protection     = false
+      + guest_accelerator       = (known after apply)
+      + id                      = (known after apply)
+      + instance_id             = (known after apply)
+      + label_fingerprint       = (known after apply)
+      + machine_type            = "f1-micro"
+      + metadata_fingerprint    = (known after apply)
+      + metadata_startup_script = <<-EOT
+            sudo apt update
+            sudo apt install -y nginx
+        EOT
+      + min_cpu_platform        = (known after apply)
+      + name                    = "tf-hw2-instance"
+      + project                 = (known after apply)
+      + self_link               = (known after apply)
+      + tags_fingerprint        = (known after apply)
+      + zone                    = "europe-central2-a"
+
+      + boot_disk {
+          + auto_delete                = true
+          + device_name                = (known after apply)
+          + disk_encryption_key_sha256 = (known after apply)
+          + kms_key_self_link          = (known after apply)
+          + mode                       = "READ_WRITE"
+          + source                     = (known after apply)
+
+          + initialize_params {
+              + image  = "debian-cloud/debian-9"
+              + labels = (known after apply)
+              + size   = (known after apply)
+              + type   = (known after apply)
+            }
+        }
+
+      + confidential_instance_config {
+          + enable_confidential_compute = (known after apply)
+        }
+
+      + network_interface {
+          + ipv6_access_type   = (known after apply)
+          + name               = (known after apply)
+          + network            = "tf-hw2-vpc"
+          + network_ip         = (known after apply)
+          + stack_type         = (known after apply)
+          + subnetwork         = (known after apply)
+          + subnetwork_project = (known after apply)
+        }
+
+      + reservation_affinity {
+          + type = (known after apply)
+
+          + specific_reservation {
+              + key    = (known after apply)
+              + values = (known after apply)
+            }
+        }
+
+      + scheduling {
+          + automatic_restart   = (known after apply)
+          + min_node_cpus       = (known after apply)
+          + on_host_maintenance = (known after apply)
+          + preemptible         = (known after apply)
+
+          + node_affinities {
+              + key      = (known after apply)
+              + operator = (known after apply)
+              + values   = (known after apply)
+            }
+        }
+    }
+
+  # module.vpc.google_compute_address.tf-hw2-internal-address will be created
+  + resource "google_compute_address" "tf-hw2-internal-address" {
+      + address            = "192.168.0.3"
+      + address_type       = "INTERNAL"
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + name               = "my-internal-address"
+      + network_tier       = (known after apply)
+      + project            = (known after apply)
+      + purpose            = (known after apply)
+      + region             = "europe-central2"
+      + self_link          = (known after apply)
+      + subnetwork         = (known after apply)
+      + users              = (known after apply)
+    }
+
+  # module.vpc.google_compute_network.tf-hw2-vpc will be created
+  + resource "google_compute_network" "tf-hw2-vpc" {
+      + auto_create_subnetworks         = true
+      + delete_default_routes_on_create = false
+      + gateway_ipv4                    = (known after apply)
+      + id                              = (known after apply)
+      + mtu                             = 1460
+      + name                            = "tf-hw2-vpc"
+      + project                         = "nimble-analyst-356011"
+      + routing_mode                    = (known after apply)
+      + self_link                       = (known after apply)
+    }
+
+  # module.vpc.google_compute_subnetwork.tf-hw2-subnet will be created
+  + resource "google_compute_subnetwork" "tf-hw2-subnet" {
+      + creation_timestamp         = (known after apply)
+      + external_ipv6_prefix       = (known after apply)
+      + fingerprint                = (known after apply)
+      + gateway_address            = (known after apply)
+      + id                         = (known after apply)
+      + ip_cidr_range              = "192.168.0.0/24"
+      + ipv6_cidr_range            = (known after apply)
+      + name                       = "tf-hw2-subnet"
+      + network                    = (known after apply)
+      + private_ipv6_google_access = (known after apply)
+      + project                    = "nimble-analyst-356011"
+      + purpose                    = (known after apply)
+      + region                     = "europe-central2"
+      + secondary_ip_range         = (known after apply)
+      + self_link                  = (known after apply)
+      + stack_type                 = (known after apply)
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+module.vpc.google_compute_network.tf-hw2-vpc: Creating...
+module.gce_instance.google_compute_disk.tf-hw2-disk: Creating...
+module.vpc.google_compute_network.tf-hw2-vpc: Still creating... [10s elapsed]
+module.gce_instance.google_compute_disk.tf-hw2-disk: Still creating... [10s elapsed]
+module.gce_instance.google_compute_disk.tf-hw2-disk: Creation complete after 13s [id=projects/nimble-analyst-356011/zones/europe-central2-a/disks/tf-hw2-disk]
+module.vpc.google_compute_network.tf-hw2-vpc: Still creating... [20s elapsed]
+module.vpc.google_compute_network.tf-hw2-vpc: Still creating... [30s elapsed]
+module.vpc.google_compute_network.tf-hw2-vpc: Creation complete after 33s [id=projects/nimble-analyst-356011/global/networks/tf-hw2-vpc]
+module.vpc.google_compute_subnetwork.tf-hw2-subnet: Creating...
+module.vpc.google_compute_subnetwork.tf-hw2-subnet: Still creating... [10s elapsed]
+module.vpc.google_compute_subnetwork.tf-hw2-subnet: Creation complete after 14s [id=projects/nimble-analyst-356011/regions/europe-central2/subnetworks/tf-hw2-subnet]
+module.vpc.google_compute_address.tf-hw2-internal-address: Creating...
+module.gce_instance.google_compute_instance.tf-hw2-gci: Creating...
+module.vpc.google_compute_address.tf-hw2-internal-address: Still creating... [10s elapsed]
+module.gce_instance.google_compute_instance.tf-hw2-gci: Still creating... [10s elapsed]
+module.vpc.google_compute_address.tf-hw2-internal-address: Creation complete after 13s [id=projects/nimble-analyst-356011/regions/europe-central2/addresses/my-internal-address]
+module.gce_instance.google_compute_instance.tf-hw2-gci: Creation complete after 17s [id=projects/nimble-analyst-356011/zones/europe-central2-a/instances/tf-hw2-instance]
+module.gce_instance.google_compute_attached_disk.tf-hw2-attached-disk: Creating...
+module.gce_instance.google_compute_attached_disk.tf-hw2-attached-disk: Still creating... [10s elapsed]
+module.gce_instance.google_compute_attached_disk.tf-hw2-attached-disk: Creation complete after 13s [id=projects/nimble-analyst-356011/zones/europe-central2-a/instances/tf-hw2-instance/tf-hw2-disk]
+
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.

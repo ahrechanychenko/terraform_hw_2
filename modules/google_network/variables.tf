@@ -22,8 +22,13 @@ variable "region" {
   type  = string
  }
 
+variable "ip-addr" {
+  type = string
+  }
 
-
+variable "google-compute-address-name" {
+  type = string
+}
 
 
 
